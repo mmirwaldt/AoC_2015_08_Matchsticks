@@ -1,6 +1,8 @@
 package net.mirwaldt;
 
 public interface CharCounter {
-    int countCodeCharacters(String input);
+    default int countCodeCharacters(String input) {
+        return input.length();
+    }
     int countStringCharacters(String input);
 }

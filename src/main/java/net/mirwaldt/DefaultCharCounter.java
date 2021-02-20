@@ -2,11 +2,6 @@ package net.mirwaldt;
 
 public class DefaultCharCounter implements CharCounter {
     @Override
-    public int countCodeCharacters(String input) {
-        return input.length();
-    }
-
-    @Override
     public int countStringCharacters(String input) {
         if(input.isEmpty()) {
             return 0;

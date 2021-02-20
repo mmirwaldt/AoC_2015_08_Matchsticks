@@ -16,7 +16,7 @@ public class CharCounterTest {
     public static final String ESCAPED_DOUBLE_QUOTE = "\\\"";
 
     private static Stream<Arguments> charCounter() {
-        return Stream.of(Arguments.of(new DefaultCharCounter()));
+        return Stream.of(Arguments.of(new DefaultCharCounter()), Arguments.of(new ReplacingCharCounter()));
     }
 
     @ParameterizedTest
