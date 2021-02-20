@@ -9,7 +9,7 @@ import java.util.List;
 public class CharCounterMain {
     public static void main(String[] args) throws IOException {
         final List<String> lines = Files.readAllLines(Path.of("input.txt"), StandardCharsets.US_ASCII);
-        final CharCounter charCounter = new DefaultCharCounter();
+        final CharCounter charCounter = new ReplacingCharCounter();
 
         long codeCharsCount = 0;
         long stringCharsCount = 0;

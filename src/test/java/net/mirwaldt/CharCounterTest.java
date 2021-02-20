@@ -4,8 +4,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.NoSuchElementException;
-import java.util.SortedMap;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,7 +14,7 @@ public class CharCounterTest {
     public static final String ESCAPED_DOUBLE_QUOTE = "\\\"";
 
     private static Stream<Arguments> charCounter() {
-        return Stream.of(Arguments.of(new DefaultCharCounter()), Arguments.of(new ReplacingCharCounter()));
+        return Stream.of(Arguments.of(new SubstringsIteratingCharCounter()), Arguments.of(new ReplacingCharCounter()));
     }
 
     @ParameterizedTest

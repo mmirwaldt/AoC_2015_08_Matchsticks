@@ -2,6 +2,8 @@ package net.mirwaldt;
 
 
 public class StringCharsCounter {
+    public static final int LENGTH_OF_ESCAPED_CHAR = 4;
+    public static final int LENGTH_OF_ESCAPED_BACKSLASH_OR_DOUBLE_QUOTE = 2;
     private final String noLeadingNorTrailingDoubleQuotes;
     private final int length;
     private int index = 0;
@@ -13,15 +15,15 @@ public class StringCharsCounter {
     }
 
     public int countChars() {
-        while(index < length) {
+        while (index < length) {
             countChar();
         }
         return stringCharCounter;
     }
 
     private void countChar() {
-        final String charString = noLeadingNorTrailingDoubleQuotes.substring(index, index+1);
-        if(isStartOfEscapeChar(charString)) {
+        final String charString = noLeadingNorTrailingDoubleQuotes.substring(index, index + 1);
+        if (isStartOfEscapeChar(charString)) {
             countEscaped();
         } else {
             countNonEscapeChar();
@@ -29,11 +31,12 @@ public class StringCharsCounter {
     }
 
     private void countEscaped() {
-        if(index + 1 < length) {
-            final String escapeSequence = noLeadingNorTrailingDoubleQuotes.substring(index, index+2);
-            if(isEscapedBackSlash(escapeSequence) || isEscapedDoubleQuote(escapeSequence)) {
+        if (index + 1 < length) {
+            final String escapeSequence = noLeadingNorTrailingDoubleQuotes.substring(
+                    index, index + LENGTH_OF_ESCAPED_BACKSLASH_OR_DOUBLE_QUOTE);
+            if (isEscapedBackSlash(escapeSequence) || isEscapedDoubleQuote(escapeSequence)) {
                 countEscapedBackSlashOrDoubleQuote();
-            } else if(isStartOfEscapedChar(escapeSequence) && index + 3 < length) {
+            } else if (isStartOfEscapedChar(escapeSequence) && index + 3 < length) {
                 countEscapedChar();
             } else {
                 rejectArgument();
@@ -50,12 +53,12 @@ public class StringCharsCounter {
 
     private void countEscapedChar() {
         stringCharCounter++;
-        index+=4;
+        index += LENGTH_OF_ESCAPED_CHAR;
     }
 
     private void countEscapedBackSlashOrDoubleQuote() {
         stringCharCounter++;
-        index+=2;
+        index += LENGTH_OF_ESCAPED_BACKSLASH_OR_DOUBLE_QUOTE;
     }
 
     private void countNonEscapeChar() {

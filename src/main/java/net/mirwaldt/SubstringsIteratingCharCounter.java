@@ -1,6 +1,6 @@
 package net.mirwaldt;
 
-public class DefaultCharCounter implements CharCounter {
+public class SubstringsIteratingCharCounter implements CharCounter {
     @Override
     public int countStringCharacters(String input) {
         if(input.isEmpty()) {
